@@ -1,47 +1,5 @@
 
 
-/*
-    CPE 460L: PROJECT
-    Mohammad Smadi 2018980093,
-   
-
-    First we create two pipes, pipe 1 recieves data from process 1 (the parent that displays the menu)
-    and sends it to process 2 (the child that finds the result).
-
-    We then fork to create two processes. In the parent, we close the reading end of pipe 1 and the writing end of pipe 2.
-    In the child, we close the writing end of pipe 1 and the reading end of pipe 2.
-
-    We then perform the following in an infinite loop:
-        1. We display the menu for the user
-
-        2. We recieve input from the user for the choice, if the choice is ("X" Or 4), terminate. Otherwise
-                check if the choice is valid (either 1, 2 or 3). We display error messages when appropriate and return to step 1
-
-
-        3.If the user has entered the two choice (1 OR 2), we will ask him to enter only one text, but         if he enters option 3, we will ask him to enter two texts
-
-        4.If the user entered a wrong choice,
-                we display appropriate error messages and loop until the user enters a correct choice. 
-            
-            
-
-        5. By this stage, we can guarantee that the choice and the text are all correct, so we send them through pipe 1
-                to the child process in the following order: choice, str 1, str 2
-        
-        6. We then read the result from pipe 2, and display it to the user.
-    
-    In the child process (process 2), we do the following infinite loop:
-        1. We read the choice, str 1 and str 2.
-
-        2. Then, we perform the appropriate operation determined by the choice.
-
-        3. We then send the result through pipe 2 to process 1.
-    
-    The child is terminated when the parent terminates.
-
-    We also perform appropriate error handling and show error messages when the program fails to write / read a pipe.
-*/
-
 //Required libraries
 
 #include <stdio.h>
